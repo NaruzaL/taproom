@@ -6,12 +6,11 @@ import { Keg } from './keg.model';
   template: `
   <select (change)="onChange($event.target.value)">
     <option value="allKegs" selected="selected">All Kegs</option>
-    <option value="abvKegs">View Beers by ABV</option>
+    <option value="abvKegs">Beers over %5 ABV</option>
   </select>
   <ul>
     <li *ngFor ="let currentKeg of childKegList | abv: filterByAbv" [class]="priceColor(currentKeg)" >{{currentKeg.name}}, Pints Left: {{currentKeg.pints}} <button (click)="editButtonHasBeenClicked(currentKeg)">Edit!</button><button (click)="serveButtonHasBeenClicked(currentKeg)">Serve a pint!</button></li>
   </ul>
-
   `
 })
 
@@ -27,13 +26,14 @@ export class KegListComponent {
   serveButtonHasBeenClicked(pintToServe: Keg) {
     this.clickPintServer.emit(pintToServe);
   }
-
   onChange(optionFromMenu) {
     this.filterByAbv = optionFromMenu;
   }
 
-
   priceColor(currentKeg){
+    if (currentKeg.pints < 110){
+      return "almostEmpty";
+    }
     if (currentKeg.price > 6){
       return "bg-danger";
     } else if (currentKeg.price <= 6 && currentKeg.price >= 5) {
@@ -41,4 +41,7 @@ export class KegListComponent {
     } else {
       return "bg-info";    }
   }
+
+
+
 }
