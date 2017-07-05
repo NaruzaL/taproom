@@ -27,7 +27,7 @@ import { Keg } from './keg.model';
       <label>ABV:</label>
       <input [(ngModel)]="childSelectedKeg.abv">
     </div>
-    <button (click)="doneButtonClickedSender()">Done</button>
+    <button (click)="doneButtonClicked()">Done</button>
   </div>
   `
 })
