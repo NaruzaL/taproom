@@ -6,33 +6,10 @@ import { Keg } from './keg.model';
   template: `
   <div class="container">
   <h1>Tap Room</h1>
-  <keg-list [childKegList]="masterKegList" (clickSender)="editKeg($event)" (clickSender)="servePint($event)"></keg-list>
+  <keg-list [childKegList]="masterKegList" (clickSender)="editKeg($event)" (clickPintServer)="servePint($event)"></keg-list>
   <br>
-  <div *ngIf="selectedKeg">
-    <h3>{{selectedKeg.name}}</h3>
-    <h3>Edit Keg</h3>
-    <div>
-      <label>Name: </label>
-      <input [(ngModel)]="selectedKeg.name">
-    </div>
-    <div>
-      <label>Brand: </label>
-      <input [(ngModel)]="selectedKeg.brand">
-    </div>
-    <div>
-      <label>Style: </label>
-      <input [(ngModel)]="selectedKeg.style">
-    </div>
-    <div>
-      <label>Price:</label>
-      <input [(ngModel)]="selectedKeg.price">
-    </div>
-    <div>
-      <label>ABV:</label>
-      <input [(ngModel)]="selectedKeg.abv">
-    </div>
-    <button (click)="finishedEditing()">Done</button>
-  </div>
+  <edit-keg [childSelectedKeg] = "selectedKeg" (doneButtonClickedSender)="finishedEditing()"></edit-keg>
+  <new-keg (newKegSender)="addKeg($event)"></new-keg>
   `
 })
 
@@ -59,5 +36,9 @@ export class AppComponent {
 
   finishedEditing() {
     this.selectedKeg = null;
+  }
+
+  addKeg(newKegFromChild: Keg) {
+    this.masterKegList.push(newKegFromChild);
   }
 }

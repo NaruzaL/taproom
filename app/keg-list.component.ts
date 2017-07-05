@@ -13,12 +13,13 @@ import { Keg } from './keg.model';
 export class KegListComponent {
   @Input() childKegList: Keg[];
   @Output() clickSender = new EventEmitter();
+  @Output() clickPintServer = new EventEmitter();
 
   editButtonHasBeenClicked(kegToEdit: Keg) {
     this.clickSender.emit(kegToEdit);
   }
   serveButtonHasBeenClicked(pintToServe: Keg) {
-    this.clickSender.emit(pintToServe);
+    this.clickPintServer.emit(pintToServe);
   }
 
 
