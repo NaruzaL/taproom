@@ -18,10 +18,12 @@ export class AppComponent {
   selectedKeg = null;
 
   masterKegList: Keg[] = [
-    new Keg('Pabst Blue Ribbon', 'Pabst', 'American Premium Lager', 3, 4.7),
+    new Keg('Pabst Blue Ribbon', 'Pabst', 'Lager', 3, 4.7),
     new Keg('60 Min IPA', 'Dogfish Head', 'IPA', 5, 6.0),
-    new Keg('Little Sumpin Sumpin', 'Lagunitas', 'Pale Wheat', 5, 7.5),
-    new Keg('Abbey', 'New Belgium', 'Belgian Style Dubbel', 6.50, 7.0)
+    new Keg('Little Sumpin Sumpin', 'Lagunitas', 'Pale', 5, 7.5),
+    new Keg('Abbey', 'New Belgium', 'Belgian Style Dubbel', 6.50, 7.0),
+    new Keg('Black Butte Porter', 'Deschutes', 'Dark', 4.50, 6.0),
+    new Keg('ODouls', 'Anheuser-Busch', 'Pilsner', 2.50, 0.5)
   ];
 
   editKeg(clickedKeg) {

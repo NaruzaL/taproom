@@ -13,12 +13,36 @@ export class AbvPipe implements PipeTransform {
     if(filterByAbv === "allKegs"){
       return input;
     }
-    else {
+    else if (filterByAbv === "abvKegs") {
       for (var i = 0; i< input.length; i++){
-      if (input[i].abv > 5){
-        output.push(input[i]);
+        if (input[i].abv > 5){
+          output.push(input[i]);
+        }
       }
+      return output;
     }
+    else  if(filterByAbv === "filterPilsner"){
+      for (var i = 0; i<input.length; i++){
+        if (input[i].style === "Pilsner"){
+          output.push(input[i]);
+        }
+      }
+      return output;
+    }
+    else  if(filterByAbv === "filterIPA"){
+      for (var i = 0; i<input.length; i++){
+        if (input[i].style === "IPA"){
+          output.push(input[i]);
+        }
+      }
+      return output;
+    }
+    else  if(filterByAbv === "filterDark"){
+      for (var i = 0; i<input.length; i++){
+        if (input[i].style === "Dark"){
+          output.push(input[i]);
+        }
+      }
       return output;
     }
   }

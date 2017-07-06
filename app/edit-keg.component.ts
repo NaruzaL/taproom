@@ -4,7 +4,7 @@ import { Keg } from './keg.model';
 @Component({
   selector: 'edit-keg',
   template: `
-  <div *ngIf="childSelectedKeg">
+  <div id = "editKeg" *ngIf="childSelectedKeg">
     <h3>{{childSelectedKeg.name}}</h3>
     <h3>Edit Keg</h3>
     <div>
