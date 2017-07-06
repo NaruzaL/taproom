@@ -4,6 +4,7 @@ import { Keg } from './keg.model';
 @Component({
   selector: 'keg-list',
   template: `
+  <div class = "selectForm">
   <select (change)="onChange($event.target.value)">
     <option value="allKegs" selected="selected">All Kegs</option>
     <option value="abvKegs">Beers over %5 ABV</option>
@@ -11,11 +12,16 @@ import { Keg } from './keg.model';
     <option value="filterIPA">See IPA's</option>
     <option value="filterDark">See Dark beers</option>
   </select>
-  <div>
-  <button (click)="dailyHappyHourHasBeenClicked(childKegList)">Start Happy Hour</button>
+  </div>
+  <div class = "selectForm">
+  <button  (click)="dailyHappyHourHasBeenClicked(childKegList)">Happy Hour</button>
   </div>
   <ul>
-    <li *ngFor ="let currentKeg of childKegList | abv: filterByAbv" [class]="priceColor(currentKeg)" ><strong>{{currentKeg.name}}</strong> | ABV: {{currentKeg.abv}} | Price: $ {{currentKeg.price}} | Pints Left: {{currentKeg.pints}}  <button (click)="editButtonHasBeenClicked(currentKeg)">Edit!</button><button (click)="smallGrowlerButtonHasBeenClicked(currentKeg)">Serve a small growler!</button><button (click)="largeGrowlerButtonHasBeenClicked(currentKeg)">Serve a large growler!</button><button (click)="serveButtonHasBeenClicked(currentKeg)">Serve a pint!</button></li>
+    <li *ngFor ="let currentKeg of childKegList | abv: filterByAbv" [class]="priceColor(currentKeg)" ><strong>{{currentKeg.name}}</strong>  Style: {{currentKeg.style}} | ABV: {{currentKeg.abv}} | Price: $ {{currentKeg.price}} | Pints Left: {{currentKeg.pints}}
+    <br>
+
+    <span><button class="beer-button" (click)="editButtonHasBeenClicked(currentKeg)">Edit</button><button class="beer-button" (click)="serveButtonHasBeenClicked(currentKeg)">16oz</button><button class="beer-button" (click)="smallGrowlerButtonHasBeenClicked(currentKeg)">32oz</button><button class="beer-button" (click)="largeGrowlerButtonHasBeenClicked(currentKeg)">64oz</button></span></li>
+
   </ul>
   `
 })
@@ -60,6 +66,8 @@ export class KegListComponent {
     } else {
       return "bg-info";    }
   }
+
+
 
 
 

@@ -5,6 +5,7 @@ import { Keg } from './keg.model';
   selector: 'app-root',
   template: `
   <div class="container">
+  <img src="https://media.giphy.com/media/92wsX8GEoNTYA/giphy.gif">
   <h1>Tap Room</h1>
   <keg-list [childKegList]="masterKegList" (clickSender)="editKeg($event)" (clickSmallGrowler)="smallGrowler($event)" (clickLargeGrowler)="largeGrowler($event)"
   (clickPintServer)="servePint($event)" (clickHappyHour)="dailyHappyHour($event)"></keg-list>
@@ -36,7 +37,6 @@ export class AppComponent {
       if(keg.happyHour === false){
         keg.happyHour = true;
         keg.price -=1;
-
       }
       else if (keg.happyHour === true){
         keg.happyHour = false;
