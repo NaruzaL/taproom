@@ -9,7 +9,7 @@ import { Keg } from './keg.model';
     <option value="abvKegs">Beers over %5 ABV</option>
   </select>
   <ul>
-    <li *ngFor ="let currentKeg of childKegList | abv: filterByAbv" [class]="priceColor(currentKeg)" >{{currentKeg.name}}, Pints Left: {{currentKeg.pints}} <button (click)="editButtonHasBeenClicked(currentKeg)">Edit!</button><button (click)="serveButtonHasBeenClicked(currentKeg)">Serve a pint!</button></li>
+    <li *ngFor ="let currentKeg of childKegList | abv: filterByAbv" [class]="priceColor(currentKeg)" >{{currentKeg.name}}, Pints Left: {{currentKeg.pints}} <button (click)="editButtonHasBeenClicked(currentKeg)">Edit!</button><button (click)="smallGrowlerButtonHasBeenClicked(currentKeg)">Serve a small growler!</button><button (click)="largeGrowlerButtonHasBeenClicked(currentKeg)">Serve a large growler!</button><button (click)="serveButtonHasBeenClicked(currentKeg)">Serve a pint!</button></li>
   </ul>
   `
 })
@@ -18,6 +18,8 @@ export class KegListComponent {
   @Input() childKegList: Keg[];
   @Output() clickSender = new EventEmitter();
   @Output() clickPintServer = new EventEmitter();
+  @Output() clickSmallGrowler = new EventEmitter();
+  @Output() clickLargeGrowler = new EventEmitter();
   filterByAbv: string = "allKegs";
 
   editButtonHasBeenClicked(kegToEdit: Keg) {
@@ -25,6 +27,12 @@ export class KegListComponent {
   }
   serveButtonHasBeenClicked(pintToServe: Keg) {
     this.clickPintServer.emit(pintToServe);
+  }
+  smallGrowlerButtonHasBeenClicked(sGToServe: Keg) {
+    this.clickSmallGrowler.emit(sGToServe);
+  }
+  largeGrowlerButtonHasBeenClicked(lGToServe: Keg) {
+    this.clickLargeGrowler.emit(lGToServe);
   }
   onChange(optionFromMenu) {
     this.filterByAbv = optionFromMenu;
