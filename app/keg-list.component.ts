@@ -11,6 +11,9 @@ import { Keg } from './keg.model';
     <option value="filterIPA">See IPA's</option>
     <option value="filterDark">See Dark beers</option>
   </select>
+  <div>
+  <button (click)="dailyHappyHourHasBeenClicked(childKegList)">Start Happy Hour</button>
+  </div>
   <ul>
     <li *ngFor ="let currentKeg of childKegList | abv: filterByAbv" [class]="priceColor(currentKeg)" ><strong>{{currentKeg.name}}</strong> | ABV: {{currentKeg.abv}} | Price: $ {{currentKeg.price}} | Pints Left: {{currentKeg.pints}}  <button (click)="editButtonHasBeenClicked(currentKeg)">Edit!</button><button (click)="smallGrowlerButtonHasBeenClicked(currentKeg)">Serve a small growler!</button><button (click)="largeGrowlerButtonHasBeenClicked(currentKeg)">Serve a large growler!</button><button (click)="serveButtonHasBeenClicked(currentKeg)">Serve a pint!</button></li>
   </ul>
@@ -23,6 +26,7 @@ export class KegListComponent {
   @Output() clickPintServer = new EventEmitter();
   @Output() clickSmallGrowler = new EventEmitter();
   @Output() clickLargeGrowler = new EventEmitter();
+  @Output() clickHappyHour = new EventEmitter();
   filterByAbv: string = "allKegs";
 
 
@@ -41,7 +45,9 @@ export class KegListComponent {
   onChange(optionFromMenu) {
     this.filterByAbv = optionFromMenu;
   }
-
+  dailyHappyHourHasBeenClicked(startHappyHour: Keg) {
+    this.clickHappyHour.emit(startHappyHour);
+  }
 
   priceColor(currentKeg){
     if (currentKeg.pints < 110){

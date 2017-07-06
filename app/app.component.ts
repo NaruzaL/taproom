@@ -7,7 +7,7 @@ import { Keg } from './keg.model';
   <div class="container">
   <h1>Tap Room</h1>
   <keg-list [childKegList]="masterKegList" (clickSender)="editKeg($event)" (clickSmallGrowler)="smallGrowler($event)" (clickLargeGrowler)="largeGrowler($event)"
-  (clickPintServer)="servePint($event)"></keg-list>
+  (clickPintServer)="servePint($event)" (clickHappyHour)="dailyHappyHour($event)"></keg-list>
   <br>
   <edit-keg [childSelectedKeg] = "selectedKeg" (doneButtonClickedSender)="finishedEditing()"></edit-keg>
   <new-keg (newKegSender)="addKeg($event)"></new-keg>
@@ -28,6 +28,21 @@ export class AppComponent {
 
   editKeg(clickedKeg) {
     this.selectedKeg = clickedKeg;
+  }
+
+  dailyHappyHour(masterKegList){
+
+    for (let keg of masterKegList){
+      if(keg.happyHour === false){
+        keg.happyHour = true;
+        keg.price -=1;
+
+      }
+      else if (keg.happyHour === true){
+        keg.happyHour = false;
+        keg.price +=1;
+      }
+    }
   }
 
   servePint(clickedKeg) {

@@ -6,7 +6,6 @@ import { Keg } from './keg.model';
   template: `
   <div id = "newKegForm">
     <h1>Add a keg</h1>
-    <div>
       <div>
         <label>Name: </label>
         <input #newName>
@@ -27,8 +26,7 @@ import { Keg } from './keg.model';
         <label>ABV: </label>
         <input #newABV>
       </div>
-      <button id = "nKButton" (click)="submitForm(newName.value, newBrand.value, newStyle.value, newPrice.value, newABV.value); newName.value=''; newBrand.value=''; newStyle.value=''; newPrice.value=''; newABV.value='';">Add</button>
-    </div>
+      <button (click)="submitForm(newName.value, newBrand.value, newStyle.value, newPrice.value, newABV.value); newName.value=''; newBrand.value=''; newStyle.value=''; newPrice.value=''; newABV.value='';">Add</button>
   </div>
     `
 })
